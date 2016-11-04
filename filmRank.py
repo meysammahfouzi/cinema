@@ -42,10 +42,3 @@ def getListofFilms(html):
     imdbLinks = soup.select("div.slp")
     # return [h3.text for h3 in imdbLinks if re.search('imdb', h3.text, re.IGNORECASE)]
     return [h3.text for h3 in imdbLinks]
-
-
-if len(sys.argv) != 2:
-    print("usage: python ./filmRank.py {movie-name}")
-    exit()
-film_name = sys.argv[1]
-print(getRating(film_name))
