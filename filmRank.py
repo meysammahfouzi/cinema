@@ -44,5 +44,8 @@ def getListofFilms(html):
     return [h3.text for h3 in imdbLinks]
 
 
-film_name = "redemption"#sys.argv[1]
+if len(sys.argv) != 2:
+    print("usage: python ./filmRank.py {movie-name}")
+    exit()
+film_name = sys.argv[1]
 print(getRating(film_name))
