@@ -1,6 +1,6 @@
 """This module contains tests for retrieving movie ratings."""
 
-from filmRank import get_rating
+from film_rank import get_rating
 
 
 def test_1():
