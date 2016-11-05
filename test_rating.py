@@ -1,18 +1,25 @@
 """This module contains tests for retrieving movie ratings."""
 
-from film_rank import get_rating
+import pytest
+from film_rank import FilmRank
+from film_rank import RatingReference
+
+@pytest.fixture
+def rater():
+    """A fixture to provide IMDB rater object"""
+    return FilmRank(RatingReference.IMDB)
 
 
-def test_1():
+def test_1(rater):
     """ Tests the rating of the movie called 'A Separation' """
-    assert get_rating("separation") == '8.4/10'
+    assert rater.get_rating("separation") == '8.4/10'
 
 
-def test_2():
+def test_2(rater):
     """ Tests the rating of the movie called 'Shawshank Redemption' """
-    assert get_rating("shawshank redemption") == '9.3/10'
+    assert rater.get_rating("shawshank redemption") == '9.3/10'
 
 
-def test_3():
+def test_3(rater):
     """ Tests the rating of the movie called 'Sixth Sense' """
-    assert get_rating("sixth sense") == '8.1/10'
+    assert rater.get_rating("sixth sense") == '8.1/10'
