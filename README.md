@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/meysammahfouzi/movie-rating.svg?branch=master)](https://travis-ci.org/meysammahfouzi/movie-rating)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
 # Movie Rating
 This python scripts retrieves the rating of a movie given its title.
 
