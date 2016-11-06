@@ -1,4 +1,4 @@
-from film_rank import FilmRank
+from movie_rating.film_rank import FilmRank
 import sys
 
 if len(sys.argv) != 2:

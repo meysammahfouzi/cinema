@@ -1,8 +1,8 @@
 """This module contains tests for retrieving movie ratings."""
 
 import pytest
-from film_rank import FilmRank
-from film_rank import RatingReference
+from movie_rating.film_rank import FilmRank
+from movie_rating.film_rank import RatingReference
 
 @pytest.fixture
 def rater():
