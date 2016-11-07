@@ -23,3 +23,7 @@ Example:
 You can also specify the movie's production year, like:  
 > python example.py 'Shawshank Redemption 1994'
 
+**Coming Soon...**  
+
+Support for python version 3.*
+
