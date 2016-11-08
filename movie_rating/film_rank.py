@@ -5,7 +5,6 @@ the rating of a movie from IMDB.
 
 import requests
 import re
-from bs4 import BeautifulSoup
 
 
 class RatingReference(object):
@@ -40,12 +39,11 @@ class FilmRank(object):
         """
         payload = {'q': film_name + ' imdb'}
         result = ""
-        try:
-            r = requests.get('https://www.google.com/search', params=payload)
-        except IOError:
-            print "no connection available!"
-        else:
+        r = requests.get('https://www.google.com/search', params=payload)
+        if r.status_code == requests.codes.ok:
             result = r.text
+        else:
+            raise ValueError('Response is not OK', r.status_code)
 
         first_index = result.find("Rating:")
 
