@@ -1,9 +1,11 @@
-from distutils.core import setup
+# -*- coding: utf-8 -*-
+
+from setuptools import setup
 
 setup(
-    name='movie_rating',
-    version='1.0.0',
-    packages=['movie_rating'],
+    name='moviepy',
+    version='0.0.1',
+    packages=['moviepy'],
     url='https://github.com/meysammahfouzi/movie-rating',
     license='MIT',
     author='Meysam Mahfouzi',
