@@ -1,2 +1,2 @@
 pytest==3.0.3
-bs4
+requests==2.11.1
