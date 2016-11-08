@@ -53,8 +53,6 @@ class FilmRank(object):
         matched = pattern.match(rating)
 
         if matched:
-            # print "rating: {}".format(matched.group())
             return matched.group()
         else:
-            print "no rating found for {}".format(film_name)
-            return 0
+            raise ValueError("No rating found", film_name)
