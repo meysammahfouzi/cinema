@@ -12,7 +12,7 @@ class MovieNotFound(Exception):
 
 class Movie(object):
     __api_url = 'http://www.omdbapi.com/?t=%s&y=&plot=full&r=json&tomatoes=true&type=movie&v=1'
-    __headers = {'user-agent': 'cinema/0.0.1'}
+    __headers = {'user-agent': 'cinema/0.0.2'}
 
     def __init__(self, name):
         assert type(name) is str
