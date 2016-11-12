@@ -10,3 +10,6 @@ The following web sites can be used to retreive the rating of movies:
 - Metacritic
 
 Currently only IMDB is supported but the support for the rest will be added soon.
+
+# Installation
+> pip install cinema
