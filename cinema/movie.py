@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-
+import json
 from datetime import datetime
 
 import requests
 import requests_cache
+from requests import ConnectionError
 
 
 class MovieNotFound(Exception):
@@ -11,14 +12,15 @@ class MovieNotFound(Exception):
 
 
 class Movie(object):
-    __api_url = 'http://www.omdbapi.com/?t=%s&y=&plot=full&r=json&tomatoes=true&type=movie&v=1'
+    __api_url = 'http://www.omdbapi.com'
     __headers = {'user-agent': 'cinema/0.0.2'}
 
-    def __init__(self, name):
+    def __init__(self, name, exact_match=False):
         assert type(name) is str
 
         name = name.strip()
 
+        self._exact_match = exact_match
         self._q = name
         self._title = None
         self._year = None
@@ -26,8 +28,8 @@ class Movie(object):
         self._runtime = None
         self._genre = ()
         self._imdb_rating = None
-        self._metascore = None
-        self._tomatometer = None
+        self._meta_score = None
+        self._tomato_meter = None
         self._rated = None
         self._directors = ()
         self._writers = ()
@@ -95,7 +97,7 @@ class Movie(object):
         Metascore
         :type: int
         """
-        return self._metascore
+        return self._meta_score
 
     @property
     def tomatometer(self):
@@ -103,7 +105,7 @@ class Movie(object):
         TOMATOMETER
         :type: int
         """
-        return self._tomatometer
+        return self._tomato_meter
 
     @property
     def rated(self):
@@ -188,7 +190,16 @@ class Movie(object):
     def _action(self):
         requests_cache.install_cache('omdb_cache', expire_after=300, backend='memory')
 
-        result = requests.get(self.__api_url % self._q, headers=self.__headers)
+        payload = {'plot': 'full',
+                   'r': 'json',
+                   'tomatoes': 'true',
+                   'type': 'movie',
+                   'v': '1'}
+        if self._exact_match:
+            payload['t'] = self._q
+        else:
+            payload['s'] = self._q
+        result = requests.get(self.__api_url, headers=self.__headers, params=payload)
 
         if result.status_code != requests.codes.ok:
             raise ConnectionError
@@ -197,11 +208,26 @@ class Movie(object):
         if data['Response'] == 'False':
             raise MovieNotFound
 
+        # print("result:")
+        # print json.dumps(data, indent=4, sort_keys=True)
+        data = data["Search"][0]
+        payload.pop('s', None)
+        payload['t'] = data['Title']
+        result = requests.get(self.__api_url, headers=self.__headers, params=payload)
+        if result.status_code != requests.codes.ok:
+            raise ConnectionError
+
+        data = result.json()
+        if data['Response'] == 'False':
+            raise MovieNotFound
+
         self._title = data['Title']
-        self._imdb_rating = float(data['imdbRating'])
-        self._metascore = int(data['Metascore'])
-        self._tomatometer = int(data['tomatoMeter'])
+        self._poster = data['Poster']
         self._year = int(data['Year'])
+        self._imdb_id = data['imdbID']
+        self._imdb_rating = float(data['imdbRating'])
+        self._meta_score = int(data['Metascore'])
+        self._tomato_meter = int(data['tomatoMeter'])
         self._released = datetime.strptime(data['Released'], '%d %b %Y').date()
         self._runtime = int(data['Runtime'].split()[0])
         self._genre = tuple(data['Genre'].split(', '))
@@ -209,12 +235,11 @@ class Movie(object):
         self._writers = tuple(data['Writer'].split(', '))
         self._language = tuple(data['Language'].split(', '))
         self._country = tuple(data['Country'].split(', '))
-        self._poster = data['Poster']
         self._rated = data['Rated']
         self._awards = data['Awards']
         self._cast = tuple(data['Actors'].split(', '))
         self._plot = data['Plot']
-        self._imdb_id = data['imdbID']
+
 
     def __repr__(self):
         return 'Movie(%s - %d)' % (self.title, self.year)
