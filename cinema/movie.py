@@ -221,24 +221,32 @@ class Movie(object):
         if data['Response'] == 'False':
             raise MovieNotFound
 
+        # print json.dumps(data, indent=4, sort_keys=True)
+
         self._title = data['Title']
         self._poster = data['Poster']
         self._year = int(data['Year'])
         self._imdb_id = data['imdbID']
         self._imdb_rating = float(data['imdbRating'])
-        self._meta_score = int(data['Metascore'])
-        self._tomato_meter = int(data['tomatoMeter'])
+        try:
+            self._meta_score = int(data['Metascore'])
+        except ValueError:
+            self._meta_score = 0
+        try:
+            self._tomato_meter = int(data['tomatoMeter'])
+        except ValueError:
+            self._tomato_meter = 0
         self._released = datetime.strptime(data['Released'], '%d %b %Y').date()
         self._runtime = int(data['Runtime'].split()[0])
+        self._rated = data['Rated']
+        self._awards = data['Awards']
+        self._plot = data['Plot']
         self._genre = tuple(data['Genre'].split(', '))
         self._directors = tuple(data['Director'].split(', '))
         self._writers = tuple(data['Writer'].split(', '))
         self._language = tuple(data['Language'].split(', '))
         self._country = tuple(data['Country'].split(', '))
-        self._rated = data['Rated']
-        self._awards = data['Awards']
         self._cast = tuple(data['Actors'].split(', '))
-        self._plot = data['Plot']
 
 
     def __repr__(self):
