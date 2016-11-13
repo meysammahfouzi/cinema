@@ -13,3 +13,16 @@ Currently only IMDB is supported but the support for the rest will be added soon
 
 # Installation
 > pip install cinema
+
+# Usage:
+An example file has been added to indicate how to use the script. Note that you do not need to specify the movie's exact name.
+
+> python example.py {MOVIE_NAME}  
+
+Example:
+
+> python example.py 'a separation'  
+
+or  
+
+> python example.py 'redemption'
