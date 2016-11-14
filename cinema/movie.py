@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-import json
 from datetime import datetime
+# import json
 
 import requests
 import requests_cache
@@ -15,13 +15,15 @@ class Movie(object):
     __api_url = 'http://www.omdbapi.com'
     __headers = {'user-agent': 'cinema/0.0.2'}
 
-    def __init__(self, name, exact_match=False):
+    def __init__(self, name, exact_match=False, year=0):
         assert type(name) is str
+        assert type(year) is int
 
         name = name.strip()
 
         self._exact_match = exact_match
-        self._q = name
+        self._q_name = name
+        self._q_year = year
         self._title = None
         self._year = None
         self._released = None
@@ -196,9 +198,11 @@ class Movie(object):
                    'type': 'movie',
                    'v': '1'}
         if self._exact_match:
-            payload['t'] = self._q
+            payload['t'] = self._q_name
         else:
-            payload['s'] = self._q
+            payload['s'] = self._q_name
+        if self._q_year != 0:
+            payload['y'] = self._q_year
         result = requests.get(self.__api_url, headers=self.__headers, params=payload)
 
         if result.status_code != requests.codes.ok:
@@ -208,7 +212,7 @@ class Movie(object):
         if data['Response'] == 'False':
             raise MovieNotFound
 
-        # print("result:")
+        # print result.request.url
         # print json.dumps(data, indent=4, sort_keys=True)
         data = data["Search"][0]
         payload.pop('s', None)
@@ -221,6 +225,7 @@ class Movie(object):
         if data['Response'] == 'False':
             raise MovieNotFound
 
+        # print result.request.url
         # print json.dumps(data, indent=4, sort_keys=True)
 
         self._title = data['Title']
@@ -237,7 +242,10 @@ class Movie(object):
         except ValueError:
             self._tomato_meter = 0
         self._released = datetime.strptime(data['Released'], '%d %b %Y').date()
-        self._runtime = int(data['Runtime'].split()[0])
+        try:
+            self._runtime = int(data['Runtime'].split()[0])
+        except ValueError:
+            self._runtime = 0
         self._rated = data['Rated']
         self._awards = data['Awards']
         self._plot = data['Plot']
