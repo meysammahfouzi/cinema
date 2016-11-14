@@ -15,15 +15,18 @@ class TestMovie(TestCase):
         self.assertEqual(Movie('shawshank redemption').imdb_rating, 9.3)
 
     def test_imdb_rating_2(self):
-        self.assertEqual(Movie("The Lord of the Rings", exact_match=False, year=2001).imdb_rating, 8.8)
+        self.assertEqual(Movie('redemption').imdb_rating, 9.3)
 
     def test_imdb_rating_3(self):
-        self.assertEqual(Movie("The Lord of the Rings", exact_match=False, year=2002).imdb_rating, 8.7)
+        self.assertEqual(Movie("The Lord of the Rings", exact_match=False, year=2001).imdb_rating, 8.8)
 
     def test_imdb_rating_4(self):
-        self.assertEqual(Movie("The Lord of the Rings", exact_match=False, year=2003).imdb_rating, 8.9)
+        self.assertEqual(Movie("The Lord of the Rings", exact_match=False, year=2002).imdb_rating, 8.7)
 
     def test_imdb_rating_5(self):
+        self.assertEqual(Movie("The Lord of the Rings", exact_match=False, year=2003).imdb_rating, 8.9)
+
+    def test_imdb_rating_6(self):
         self.assertEqual(Movie("The Lord of the Rings", exact_match=False, year=1978).imdb_rating, 6.2)
 
     def test_movie_year(self):
