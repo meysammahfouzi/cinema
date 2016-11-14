@@ -6,7 +6,7 @@ from setuptools import setup
 setup(
     name='cinema',
     packages=['cinema'],
-    version='0.0.2',
+    version='0.0.3',
     description='Everything about Cinema!',
     author='Meysam Mahfouzi, Majid Hajiloo',
     author_email='maysam.mahfouzi@gmail.com, majid.hajiloo@gmail.com',
