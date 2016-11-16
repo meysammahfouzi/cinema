@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/meysammahfouzi/cinema.svg?branch=master)](https://travis-ci.org/meysammahfouzi/cinema)
+[![Coverage Status](https://coveralls.io/repos/github/meysammahfouzi/cinema/badge.svg?branch=develop)](https://coveralls.io/github/meysammahfouzi/cinema?branch=develop)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
 # Cinema
 This python scripts retrieves the rating of a movie given its title.
