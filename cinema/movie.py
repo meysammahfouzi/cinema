@@ -2,6 +2,7 @@
 from datetime import datetime
 # import json
 
+import re
 import requests
 import requests_cache
 from requests import ConnectionError
@@ -42,7 +43,6 @@ class Movie(object):
         self._cast = ()
         self._plot = None
         self._imdb_id = None
-
         self._action()
 
     @property
@@ -189,6 +189,23 @@ class Movie(object):
         """
         return self._imdb_id
 
+    def _search_for_imdb_id(self, movie_name):
+        """
+        Searches for the movie name in google and tries to find its imdb id
+        :param movie_name: The name of the movie to search for
+        :return: IMDB unique identifier
+        """
+        imdb_id = ""
+        payload = {'q': movie_name + ' imdb'}
+        response = requests.get('https://www.google.com/search', params=payload)
+        if response.status_code == requests.codes.ok:
+            html = response.text
+            regex = re.compile("www.imdb.com/title/.+?/")
+            search_result = regex.search(html)
+            if search_result is not None:
+                imdb_id = (search_result.group(0).split('/'))[2]
+        return imdb_id
+
     def _action(self):
         requests_cache.install_cache('omdb_cache', expire_after=300, backend='memory')
 
@@ -203,20 +220,28 @@ class Movie(object):
             payload['s'] = self._q_name
         if self._q_year != 0:
             payload['y'] = self._q_year
+
         result = requests.get(self.__api_url, headers=self.__headers, params=payload)
 
         if result.status_code != requests.codes.ok:
             raise ConnectionError
 
         data = result.json()
+        imdb_id = ''
         if data['Response'] == 'False':
-            raise MovieNotFound
+            # Trying searching for the movie's name in google
+            imdb_id = self._search_for_imdb_id(self._q_name)
+            if imdb_id == '':
+                raise MovieNotFound
 
         # print result.request.url
         # print json.dumps(data, indent=4, sort_keys=True)
-        data = data["Search"][0]
         payload.pop('s', None)
-        payload['t'] = data['Title']
+        if imdb_id != '':
+            payload['i'] = imdb_id
+        else:
+            data = data["Search"][0]
+            payload['t'] = data['Title']
         result = requests.get(self.__api_url, headers=self.__headers, params=payload)
         if result.status_code != requests.codes.ok:
             raise ConnectionError

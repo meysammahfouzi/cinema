@@ -62,3 +62,6 @@ class TestMovie(TestCase):
                          "Forrest Gump, while not intelligent, has accidentally been "
                          "present at many historic moments, but his true love, Jenny "
                          "Curran, eludes him.")
+
+    def test_fallback_to_google(self):
+        self.assertEqual(Movie('forushande').title, 'The Salesman')

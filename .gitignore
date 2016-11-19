@@ -6,3 +6,5 @@ __pycache__
 *.swp
 cinema.egg-info
 dist
+.vscode/
+.coverage

@@ -12,14 +12,14 @@ The following web sites can be used to retreive the rating of movies:
 
 Currently only IMDB is supported but the support for the rest will be added soon.
 
-# Installation
+## Installation
 > pip install cinema  
 
 or locally:
 
 > python setup.py install
 
-# Usage:
+## Usage:
 An example file has been added to indicate how to use the script. Note that you do not need to specify the movie's exact name.
 
 > python example.py {MOVIE_NAME}  
