@@ -2,11 +2,11 @@ from cinema.movie import Movie, MovieNotFound
 import sys
 
 if len(sys.argv) < 2:
-    print "Usage:\n \twatchmovie.py {MOVIE_NAME} {RELEASE_YEAR}\n" \
+    print("Usage:\n \twatchmovie.py {MOVIE_NAME} {RELEASE_YEAR}\n" \
           "\tThe RELEASE_YEAR parameter is optional\n" \
           "Example:\n \twatchmovie.py 'A Separation'\n\n" \
           "You can also specify the movie's production year:\n" \
-          "\twatchmovie.py 'lord of the rings' 2003\n"
+          "\twatchmovie.py 'lord of the rings' 2003\n")
     exit()
 
 movie_name = sys.argv[1].strip()
