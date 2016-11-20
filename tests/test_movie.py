@@ -9,7 +9,7 @@ class TestMovie(TestCase):
         self.assertEqual(Movie('the matrix revolutions').title, 'The Matrix Revolutions')
 
     def test_movie_director(self):
-        self.assertEqual(Movie('A Separation').directors[0], 'Asghar Farhadi')
+        self.assertEqual(", ".join(Movie('A Separation').directors), 'Asghar Farhadi')
 
     def test_imdb_rating_1(self):
         self.assertEqual(Movie('shawshank redemption').imdb_rating, 9.3)
@@ -63,5 +63,14 @@ class TestMovie(TestCase):
                          "present at many historic moments, but his true love, Jenny "
                          "Curran, eludes him.")
 
-    def test_fallback_to_google(self):
+    def test_fallback_to_google_1(self):
         self.assertEqual(Movie('forushande').title, 'The Salesman')
+
+    def test_fallback_to_google_2(self):
+        self.assertEqual(Movie('like love kiarostami').title, 'Like Someone in Love')
+
+    def test_fallback_to_google_3(self):
+        self.assertEqual(", ".join(Movie('so far karimi').writers), 'Mohammad Reza Gohari, Reza Mirkarimi')
+
+    def test_unicode_actor(self):
+        self.assertEqual(", ".join(Movie('like love kiarostami').cast), 'Tadashi Okuno, Rin Takanashi, Ryô Kase, Denden')
