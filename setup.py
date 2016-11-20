@@ -6,12 +6,12 @@ from setuptools import setup
 setup(
     name='cinema',
     packages=['cinema'],
-    version='0.0.4',
+    version='0.0.5',
     description='Everything about Cinema!',
     author='Meysam Mahfouzi, Majid Hajiloo',
     author_email='maysam.mahfouzi@gmail.com, majid.hajiloo@gmail.com',
     url='https://github.com/meysammahfouzi/cinema',
-    download_url = 'https://github.com/meysammahfouzi/cinema/tarball/0.0.4',
+    download_url='https://github.com/meysammahfouzi/cinema/tarball/0.0.5',
     license='MIT',
     keywords=['movie', 'rating', 'imdb', 'film', 'cinema', 'actor', 'metascore', 'tomatometer'],
     install_requires=[
@@ -34,4 +34,5 @@ setup(
         'Programming Language :: Python :: Implementation :: PyPy',
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
+    scripts=['example/watchmovie.py']
 )
