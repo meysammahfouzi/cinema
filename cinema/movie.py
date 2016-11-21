@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+
+from six import python_2_unicode_compatible
 from datetime import datetime
 # import json
 
@@ -12,6 +14,7 @@ class MovieNotFound(Exception):
     pass
 
 
+@python_2_unicode_compatible
 class Movie(object):
     __api_url = 'http://www.omdbapi.com'
     __headers = {'user-agent': 'cinema/0.0.5'}
