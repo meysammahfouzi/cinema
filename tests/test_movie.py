@@ -70,7 +70,7 @@ class TestMovie(TestCase):
         self.assertEqual(Movie('like love kiarostami').title, 'Like Someone in Love')
 
     def test_fallback_to_google_3(self):
-        self.assertEqual(", ".join(Movie('so far karimi').writers), 'Mohammad Reza Gohari, Reza Mirkarimi')
+        self.assertEqual(", ".join(Movie('so far so near mirkarimi').writers), 'Mohammad Reza Gohari, Reza Mirkarimi')
 
     def test_unicode_actor(self):
         self.assertEqual(", ".join(Movie('like love kiarostami').cast), u'Tadashi Okuno, Rin Takanashi, Ryô Kase, Denden')
