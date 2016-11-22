@@ -14,7 +14,7 @@ class MovieNotFound(Exception):
 
 class Movie(object):
     __api_url = 'http://www.omdbapi.com'
-    __headers = {'user-agent': 'cinema/0.0.2'}
+    __headers = {'user-agent': 'cinema/0.0.6'}
 
     def __init__(self, name, exact_match=False, year=0):
         assert type(name) is str
@@ -279,7 +279,7 @@ class Movie(object):
         self._writers = tuple(data['Writer'].split(', '))
         self._language = tuple(data['Language'].split(', '))
         self._country = tuple(data['Country'].split(', '))
-        self._cast = tuple(data['Actors'].encode('utf-8').strip().split(', '))
+        self._cast = tuple(data['Actors'].encode('utf-8').decode('utf-8').split(', '))
 
     def __repr__(self):
         return 'Movie(%s - %d)' % (self.title, self.year)

@@ -73,4 +73,4 @@ class TestMovie(TestCase):
         self.assertEqual(", ".join(Movie('so far karimi').writers), 'Mohammad Reza Gohari, Reza Mirkarimi')
 
     def test_unicode_actor(self):
-        self.assertEqual(", ".join(Movie('like love kiarostami').cast), 'Tadashi Okuno, Rin Takanashi, Ryô Kase, Denden')
+        self.assertEqual(", ".join(Movie('like love kiarostami').cast), u'Tadashi Okuno, Rin Takanashi, Ryô Kase, Denden')
