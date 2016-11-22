@@ -8,3 +8,4 @@ cinema.egg-info
 dist
 .vscode/
 .coverage
+.python-version

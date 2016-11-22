@@ -34,5 +34,5 @@ setup(
         'Programming Language :: Python :: Implementation :: PyPy',
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
-    scripts=['example/watchmovie.py']
+    scripts=['scripts/watchmovie.py']
 )
