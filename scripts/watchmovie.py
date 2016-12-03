@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from cinema.movie import Movie, MovieNotFound
 import sys
 
