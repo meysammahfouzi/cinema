@@ -6,12 +6,12 @@ from setuptools import setup
 setup(
     name='cinema',
     packages=['cinema'],
-    version='0.0.6',
+    version='0.0.7',
     description='Everything about Cinema!',
     author='Meysam Mahfouzi, Majid Hajiloo',
     author_email='maysam.mahfouzi@gmail.com, majid.hajiloo@gmail.com',
     url='https://github.com/meysammahfouzi/cinema',
-    download_url='https://github.com/meysammahfouzi/cinema/tarball/0.0.6',
+    download_url='https://github.com/meysammahfouzi/cinema/tarball/0.0.7',
     license='MIT',
     keywords=['movie', 'rating', 'imdb', 'film', 'cinema', 'actor', 'metascore', 'tomatometer'],
     install_requires=[
