@@ -3,11 +3,17 @@
 from setuptools import setup
 
 
+def readme():
+    with open('README.rst') as f:
+        return f.read()
+
+
 setup(
     name='cinema',
     packages=['cinema'],
     version='0.0.7',
     description='Everything about Cinema!',
+    long_description=readme(),
     author='Meysam Mahfouzi, Majid Hajiloo',
     author_email='maysam.mahfouzi@gmail.com, majid.hajiloo@gmail.com',
     url='https://github.com/meysammahfouzi/cinema',
@@ -34,5 +40,7 @@ setup(
         'Programming Language :: Python :: Implementation :: PyPy',
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
-    scripts=['scripts/watchmovie.py']
+    entry_points={
+        'console_scripts': ['watch-movie=scripts.watch_movie:main'],
+    }
 )
