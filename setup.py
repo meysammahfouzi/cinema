@@ -41,6 +41,6 @@ setup(
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
     entry_points={
-        'console_scripts': ['watch-movie=entry_scripts.watch_movie:main'],
+        'console_scripts': ['watch-movie=scripts.watch_movie:main'],
     }
 )
