@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from setuptools import setup
+from setuptools import setup, find_packages
 
 
 def readme():
@@ -10,7 +10,7 @@ def readme():
 
 setup(
     name='cinema',
-    packages=['cinema'],
+    packages=find_packages(),
     version='0.0.7',
     description='Everything about Cinema!',
     long_description=readme(),
