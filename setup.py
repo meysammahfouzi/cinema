@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 
+import io
+
 from setuptools import setup, find_packages
 
 
 def readme():
-    with open('README.rst', encoding='utf8') as f:
+    with io.open('README.rst', encoding='utf8') as f:
         return f.read()
 
 
