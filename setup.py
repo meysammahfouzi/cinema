@@ -1,13 +1,21 @@
 # -*- coding: utf-8 -*-
 
-from setuptools import setup
+import io
+
+from setuptools import setup, find_packages
+
+
+def readme():
+    with io.open('README.rst', encoding='utf8') as f:
+        return f.read()
 
 
 setup(
     name='cinema',
-    packages=['cinema'],
+    packages=find_packages(),
     version='0.0.7',
     description='Everything about Cinema!',
+    long_description=readme(),
     author='Meysam Mahfouzi, Majid Hajiloo',
     author_email='maysam.mahfouzi@gmail.com, majid.hajiloo@gmail.com',
     url='https://github.com/meysammahfouzi/cinema',
@@ -34,5 +42,7 @@ setup(
         'Programming Language :: Python :: Implementation :: PyPy',
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
-    scripts=['scripts/watchmovie.py']
+    entry_points={
+        'console_scripts': ['watch-movie=scripts.watch_movie:main'],
+    }
 )

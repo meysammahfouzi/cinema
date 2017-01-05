@@ -1,7 +1,9 @@
 build
 .cache
 __pycache__
+# Compiled python modules.
 *.pyc
+
 .idea
 *.swp
 cinema.egg-info
@@ -9,3 +11,10 @@ dist
 .vscode/
 .coverage
 .python-version
+
+# Setuptools distribution folder.
+/dist/
+
+# Python egg metadata, regenerated from source files by setuptools.
+/*.egg-info
+/*.egg

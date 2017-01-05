@@ -59,9 +59,16 @@ class TestMovie(TestCase):
 
     def test_movie_tomato_plot(self):
         self.assertEqual(Movie("Forrest Gump").plot,
-                         "Forrest Gump, while not intelligent, has accidentally been "
-                         "present at many historic moments, but his true love, Jenny "
-                         "Curran, eludes him.")
+                         "Forrest Gump is a simple man with a low I.Q. but good intentions. "
+                         "He is running through childhood with his best and only friend Jenny. "
+                         "His 'mama' teaches him the ways of life and leaves him to choose his destiny. "
+                         "Forrest joins the army for service in Vietnam, finding new friends called Dan "
+                         "and Bubba, he wins medals, creates a famous shrimp fishing fleet, inspires people "
+                         "to jog, starts a ping-pong craze, creates the smiley, writes bumper stickers and songs, "
+                         "donates to people and meets the president several times. However, this is all "
+                         "irrelevant to Forrest who can only think of his childhood sweetheart Jenny Curran, "
+                         "who has messed up her life. Although in the end all he wants to prove is that "
+                         "anyone can love anyone.")
 
     def test_fallback_to_google_1(self):
         self.assertEqual(Movie('forushande').title, 'The Salesman')
