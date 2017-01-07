@@ -5,8 +5,8 @@
 
 Cinema
 ------
-This python scripts retrieves the rating of a movie given its title.
-The following web sites are used to retreive the rating of movies:
+This python scripts retrieves all the information of a movie given its title.
+The following web sites are used to retrieve the rating of movies:
 
 - IMDB 
 - RogerEbert 
@@ -16,7 +16,7 @@ Currently only IMDB is supported but the support for the rest will be added soon
 
 Installation
 ------------
-    pip install cinema  
+    pip install cinema
 
 or locally:
 
@@ -24,14 +24,19 @@ or locally:
 
 Usage:
 ------
-An example file has been added to indicate how to use the script. Note that you do not need to specify the movie's exact name.
+After installing the package, you can use the following command to retrieve the information of a movie.
+Note that you do not need to specify the movie's exact name.
 
-    python example.py {MOVIE_NAME}  
+    watch-movie {MOVIE_NAME}
 
 Example:
 
-    python example.py 'a separation'  
+    watch-movie 'a separation'
 
 or  
 
-    python example.py 'redemption'
+    watch-movie 'redemption'
+
+In case there are multiple versions of a movie, you can specify the production year too:
+
+    watch-movie 'The Lord of the Rings' 2002
