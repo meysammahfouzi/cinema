@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from unittest import TestCase
 
+import datetime
+
 from cinema.movie import Movie
 
 
@@ -81,3 +83,21 @@ class TestMovie(TestCase):
 
     def test_unicode_actor(self):
         self.assertEqual(", ".join(Movie('like love kiarostami').cast), u'Tadashi Okuno, Rin Takanashi, Ryô Kase, Denden')
+
+    def test_release(self):
+        self.assertEqual(Movie('godfather', year=1972).released, datetime.date(1972, 3, 24))
+
+    def test_runtime(self):
+        self.assertEqual(Movie('godfather', year=1990).runtime, 162)
+
+    def test_meta_score(self):
+        self.assertEqual(Movie('shawshank redemption').metascore, 80)
+
+    def test_rated(self):
+        self.assertEqual(Movie('fight club').rated, 'R')
+
+    # def test_exact_match(self):
+    #     self.assertEqual(Movie('fight club', exact_match=True).title, 'Fight Club')
+
+    def test_str(self):
+        self.assertEqual(str(Movie('godfather', year=1972)), "The Godfather (1972)")
