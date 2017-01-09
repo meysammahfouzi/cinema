@@ -56,6 +56,9 @@ class TestMovie(TestCase):
     def test_movie_writers(self):
         self.assertEqual(", ".join(Movie("fight club").writers), 'Chuck Palahniuk (novel), Jim Uhls (screenplay)')
 
+    def test_movie_writers2(self):
+        self.assertEqual(", ".join(Movie("test").writers), u'Nicholas Gyeney (story), Nicholas Gyeney, André Kirkman')
+
     def test_movie_tomato_meter(self):
         self.assertEqual(Movie("star wars", exact_match=False, year=1980).tomatometer, 94)
 
@@ -101,3 +104,6 @@ class TestMovie(TestCase):
 
     def test_str(self):
         self.assertEqual(str(Movie('godfather', year=1972)), "The Godfather (1972)")
+
+    def test_repr(self):
+        self.assertEqual(repr(Movie('godfather', year=1972)), "Movie(The Godfather - 1972)")

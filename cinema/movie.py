@@ -279,7 +279,7 @@ class Movie(object):
         self._writers = tuple(data['Writer'].split(', '))
         self._language = tuple(data['Language'].split(', '))
         self._country = tuple(data['Country'].split(', '))
-        self._cast = tuple(data['Actors'].encode('utf-8').decode('utf-8').split(', '))
+        self._cast = tuple(data['Actors'].split(', '))
 
     def __repr__(self):
         return 'Movie(%s - %d)' % (self.title, self.year)
