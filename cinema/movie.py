@@ -3,16 +3,9 @@ from datetime import datetime
 # import json
 
 import re
-import sys
 import requests
 import requests_cache
 from requests import ConnectionError
-
-# Try setting the system default encoding as utf-8 at the start of the script,
-# so that all strings are encoded using that.
-if sys.version_info < (3, 0):
-    reload(sys)
-    sys.setdefaultencoding('utf-8')
 
 
 class MovieNotFound(Exception):
