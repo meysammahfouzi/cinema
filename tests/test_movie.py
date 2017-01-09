@@ -57,7 +57,7 @@ class TestMovie(TestCase):
         self.assertEqual(", ".join(Movie("fight club").writers), 'Chuck Palahniuk (novel), Jim Uhls (screenplay)')
 
     def test_movie_writers2(self):
-        self.assertEqual(", ".join(Movie("test").writers), 'Nicholas Gyeney (story), Nicholas Gyeney, André Kirkman')
+        self.assertEqual(u", ".join(Movie("test").writers), u'Nicholas Gyeney (story), Nicholas Gyeney, André Kirkman')
 
     def test_movie_tomato_meter(self):
         self.assertEqual(Movie("star wars", exact_match=False, year=1980).tomatometer, 94)
