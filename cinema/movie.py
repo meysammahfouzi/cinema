@@ -257,7 +257,10 @@ class Movie(object):
         self._poster = data['Poster']
         self._year = int(data['Year'])
         self._imdb_id = data['imdbID']
-        self._imdb_rating = float(data['imdbRating'])
+        try:
+            self._imdb_rating = float(data['imdbRating'])
+        except ValueError:
+            self._imdb_rating = 0
         try:
             self._meta_score = int(data['Metascore'])
         except ValueError:
@@ -266,7 +269,10 @@ class Movie(object):
             self._tomato_meter = int(data['tomatoMeter'])
         except ValueError:
             self._tomato_meter = 0
-        self._released = datetime.strptime(data['Released'], '%d %b %Y').date()
+        try:
+            self._released = datetime.strptime(data['Released'], '%d %b %Y').date()
+        except ValueError:
+            self._released = ''
         try:
             self._runtime = int(data['Runtime'].split()[0])
         except ValueError:
