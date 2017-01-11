@@ -13,13 +13,13 @@ def readme():
 setup(
     name='cinema',
     packages=find_packages(),
-    version='0.0.8',
+    version='0.0.9',
     description='Everything about Cinema!',
     long_description=readme(),
     author='Meysam Mahfouzi, Majid Hajiloo',
     author_email='maysam.mahfouzi@gmail.com, majid.hajiloo@gmail.com',
     url='https://github.com/meysammahfouzi/cinema',
-    download_url='https://github.com/meysammahfouzi/cinema/tarball/0.0.8',
+    download_url='https://github.com/meysammahfouzi/cinema/tarball/0.0.9',
     license='MIT',
     keywords=['movie', 'rating', 'imdb', 'film', 'cinema', 'actor', 'metascore', 'tomatometer'],
     install_requires=[
