@@ -6,6 +6,7 @@ import re
 import requests
 import requests_cache
 from requests import ConnectionError
+from pkg_resources import get_distribution
 
 
 class MovieNotFound(Exception):
@@ -14,7 +15,7 @@ class MovieNotFound(Exception):
 
 class Movie(object):
     __api_url = 'http://www.omdbapi.com'
-    __headers = {'user-agent': 'cinema/0.0.9'}
+    __headers = {'user-agent': 'cinema/' + get_distribution('foobar').version}
 
     def __init__(self, name, exact_match=False, year=0):
         assert type(name) is str
