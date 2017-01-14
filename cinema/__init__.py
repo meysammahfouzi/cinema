@@ -6,11 +6,11 @@ import os.path
 __title__ = 'cinema'
 
 try:
-    _dist = get_distribution('foobar')
+    _dist = get_distribution('cinema')
     # Normalize case for Windows systems
     dist_loc = os.path.normcase(_dist.location)
     here = os.path.normcase(__file__)
-    if not here.startswith(os.path.join(dist_loc, 'foobar')):
+    if not here.startswith(os.path.join(dist_loc, 'cinema')):
         # not installed, but there is another version that *is*
         raise DistributionNotFound
 except DistributionNotFound:
