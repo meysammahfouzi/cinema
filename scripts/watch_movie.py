@@ -2,6 +2,8 @@
 
 import argparse
 
+from requests import ConnectionError
+
 from cinema.movie import Movie, MovieNotFound
 
 
@@ -35,7 +37,8 @@ def main():
         print(u"Plot: {}".format(movie.plot))
     except MovieNotFound:
         print("No movie found!")
-
+    except ConnectionError:
+        print("No response!")
 
 if __name__ == "__main__":
     main()
