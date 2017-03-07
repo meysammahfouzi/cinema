@@ -1,19 +1,21 @@
 #!/usr/bin/env python
 
 import argparse
-
 from requests import ConnectionError
-
 from cinema.movie import Movie, MovieNotFound
 
 
-def main():
+def run():
     """The main routine."""
     parser = argparse.ArgumentParser(
-        description="This python scripts retrieves the rating of a movie with its title. \n\texample: \n\t>> watch-movie 'lord of the rings' 2003")
-    parser.add_argument("name", help="The name of movie you want to search")
-    parser.add_argument("release_year", type=int, help='The release year of the movie.', nargs='?', default=0)
-    parser.add_argument("-e", "--exact_match", action="store_true", help="search exact name of the movie.")
+        description="This python scripts retrieves the rating of a movie given its title."
+                    "\n\tExample: \n\t>> watch-movie 'lord of the rings' 2003")
+    parser.add_argument("name", help="The name of movie you want to search",
+                        type=str)
+    parser.add_argument("release_year", help='The release year of the movie.',
+                        type=int, nargs='?', default=0)
+    parser.add_argument("-e", "--exact_match", help="search exact name of the movie.",
+                        action="store_true")
 
     args = parser.parse_args()
 
@@ -40,5 +42,6 @@ def main():
     except ConnectionError:
         print("No response!")
 
+
 if __name__ == "__main__":
-    main()
+    run()
