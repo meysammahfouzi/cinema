@@ -228,7 +228,9 @@ class Movie(object):
             raise ConnectionError
 
         data = result.json()
+
         imdb_id = ''
+
         if data['Response'] == 'False':
             # Trying searching for the movie's name in google
             imdb_id = self._search_for_imdb_id(self._q_name)
@@ -237,22 +239,20 @@ class Movie(object):
 
         # print result.request.url
         # print json.dumps(data, indent=4, sort_keys=True)
-        payload.pop('s', None)
-        if imdb_id != '':
-            payload['i'] = imdb_id
-        else:
-            data = data["Search"][0]
-            payload['t'] = data['Title']
-        result = requests.get(self.__api_url, headers=self.__headers, params=payload)
-        if result.status_code != requests.codes.ok:
-            raise ConnectionError
+        if not self._exact_match:
+            payload.pop('s', None)
+            if imdb_id != '':
+                payload['i'] = imdb_id
+            else:
+                data = data["Search"][0]
+                payload['t'] = data['Title']
+            result = requests.get(self.__api_url, headers=self.__headers, params=payload)
+            if result.status_code != requests.codes.ok:
+                raise ConnectionError
 
-        data = result.json()
-        if data['Response'] == 'False':
-            raise MovieNotFound
-
-        # print result.request.url
-        # print json.dumps(data, indent=4, sort_keys=True)
+            data = result.json()
+            if data['Response'] == 'False':
+                raise MovieNotFound
 
         self._title = data['Title']
         self._poster = data['Poster']
