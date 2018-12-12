@@ -11,6 +11,7 @@ dist
 .vscode/
 .coverage
 .python-version
+py36
 
 # Setuptools distribution folder.
 /dist/
