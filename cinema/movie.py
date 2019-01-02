@@ -15,6 +15,7 @@ class MovieNotFound(Exception):
 
 class Movie(object):
     __api_url = 'http://www.omdbapi.com'
+    __api_key = '81668c10'
     __headers = {'user-agent': 'cinema/' + get_distribution('cinema').version}
 
     def __init__(self, name, exact_match=False, year=0):
@@ -210,7 +211,8 @@ class Movie(object):
     def _action(self):
         requests_cache.install_cache('omdb_cache', expire_after=300, backend='memory')
 
-        payload = {'plot': 'full',
+        payload = {'apikey': self.__api_key,
+                   'plot': 'full',
                    'r': 'json',
                    'tomatoes': 'true',
                    'type': 'movie',

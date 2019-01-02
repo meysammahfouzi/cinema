@@ -12,7 +12,7 @@ The following web sites are used to retrieve the rating of movies:
 - RogerEbert 
 - Metacritic
 
-Currently only IMDB is supported but the support for the rest will be added soon.
+Currently only IMDB is supported but the support for the rest will be added.
 
 Installation
 ------------
