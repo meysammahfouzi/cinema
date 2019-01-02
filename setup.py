@@ -10,7 +10,7 @@ def readme():
         return f.read()
 
 
-ver = '0.0.9'
+ver = '0.0.11'
 
 setup(
     name='cinema',
