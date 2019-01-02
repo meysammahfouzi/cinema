@@ -9,7 +9,7 @@ def readme():
     with io.open('README.rst', encoding='utf8') as f:
         return f.read()
 
-ver = '0.0.10'
+ver = '0.0.11'
 
 setup(
     name='cinema',
